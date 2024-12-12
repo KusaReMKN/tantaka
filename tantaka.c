@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#ifdef UNIX
-#include <unistd.h>
-#else
-#define getpid()	0
-#endif
 
 /** 状態を管理する識別子 */
 enum state {
@@ -51,7 +46,7 @@ main(void)
         /** 遷移先を決めるための変数 */
         double tmp;
 
-        srand((unsigned)time(NULL) + (unsigned)getpid());
+        srand((unsigned)time(NULL));
         current = STATE_START;
         do {
                 (void)printf("%s", ctab[current]);
